@@ -10,7 +10,15 @@ This is a simple Python project that extracts all the links from one or more web
 
 ## 💡 How It Works (File Overview)
 
-link_extractor/ ├── main.py # Runs everything together using threads ├── test.py # Lets you test a single website from the terminal ├── producer.py # Downloads HTML from websites ├── consumer.py # Parses the HTML and extracts the links ├── urls.txt # A list of URLs to scrape (used by main.py) ├── output.txt # Where the extracted links are saved ├── test_extractor.py # Unit tests for link parsing
+```text
+link_extractor/
+├── main.py         # Runs everything together using threads
+├── test.py         # Lets you test a single website from the terminal 
+├── producer.py     # Downloads HTML from websites 
+├── consumer.py     # Parses the HTML and extracts the links 
+├── urls.txt        # A list of URLs to scrape (used by main.py) 
+├── output.txt      # Where the extracted links are saved  
+```
 
 ---
 
