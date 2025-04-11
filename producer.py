@@ -3,17 +3,21 @@ import requests
 import requests
 import time
 import random
+# ThreadPoolExecutor allows for organized multithread processing for looping
+# Processing type - as_completed.
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# Optional: Custom headers to mimic a real browser
+# Custom headers to mimic a real browser
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                   "AppleWebKit/537.36 (KHTML, like Gecko) "
                   "Chrome/120.0.0.0 Safari/537.36"
 }
 
+# Fetches all the html from the webpage and adds to the queue (mapped to source url)
 def fetch_html(url, queue, max_retries=3, min_delay=1, max_delay=3):
     attempt = 0
+    # attempt is used to avoid getting stuck on a bad url
     while attempt < max_retries:
         try:
             print(f"[Producer] Fetching: {url} (Attempt {attempt + 1})")
@@ -34,6 +38,7 @@ def fetch_html(url, queue, max_retries=3, min_delay=1, max_delay=3):
 
     print(f"[Producer] Giving up on {url} after {max_retries} attempts.")
 
+#Multi-thread url webpages links extraction
 def start_producer(urls, queue, max_workers=5):
     print(f"[Producer] Starting with {len(urls)} URLs, using {max_workers} threads.")
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
